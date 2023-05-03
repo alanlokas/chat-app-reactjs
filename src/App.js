@@ -34,7 +34,7 @@ class App extends React.Component {
   /* member ubacujemo u stanje odma kada se korisnik spoji da bi lakse dosli do podataka o korisniku */
   constructor() {
     super();
-    this.drone = new window.Scaledrone("TTAB80ZRqzFy41Il", {
+    this.drone = new window.Scaledrone("CMacwJ3ss7YIs0hJ", {
       data: this.state.korisnik
     });
     this.drone.on("open", error => {
