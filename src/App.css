@@ -13,6 +13,7 @@ body{
   height: 100%;
 }
 
+/* stiliziraju elemente unutar aplikacije, uključujući visinu, pozadinu, zaobljenje kutova, obrube i druge vizualne elemente. */
 .lista-div{
   max-height: 400px;
   height: 400px;
@@ -31,6 +32,7 @@ body{
   overflow: auto;
 }
 
+/* definiraju stilove poruka korisnika i poruka drugih korisnika, uključujući raspored, smjer, margine i ostale postavke. */
 .poruka-trenutni-korisnik{
   width: 100%;
   display: flex;
@@ -66,6 +68,7 @@ body{
   margin-bottom: 5px;
 }
 
+/* stilizira korisničko ime koje se prikazuje uz poruke */
 .username{
   flex-basis: 100%;
   color: gray;
@@ -100,6 +103,7 @@ body{
   word-break: break-all;
 }
 
+/* definiraju izgled polja za unos i gumba za slanje */
 .input-div{
   display: flex;
   flex-direction: row;
@@ -135,7 +139,7 @@ body{
   border: none;
 }
 
-
+/* stiliziraju zaglavlje i podnožje aplikacije */
 .footer{
   flex-basis: 100%;
   text-align: center;

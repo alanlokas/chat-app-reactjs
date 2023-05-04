@@ -9,6 +9,7 @@ function randomId() {
 
 function Messages(props) {
   // u komponenti Messages primamo dva propsa - korisnik i poruke
+  // Dekonstruiramo "korisnik" i "poruke" iz "props" objekta.
   const { korisnik, poruke } = props;
 
   // Koristimo hookove useRef i useEffect da bismo mogli dodati funkcionalnost 
@@ -57,5 +58,11 @@ function Messages(props) {
     </div>
   );
 }  
+
+// poruke.slice(0) - Kreira kopiju niza "poruke" kako bismo izbjegli mijenjanje izvornog niza.
+// reverse() - Obrće redoslijed elemenata u kopiranom nizu "poruke" kako bi se poruke prikazale u obrnutom redoslijedu (najnovije poruke na vrhu).
+// map((el, i) => ( - Koristi "map()" funkciju za iteraciju kroz niz obrnutih poruka. Za svaki element niza (označen kao "el") i njegov indeks (označen kao "i"), izvršava se sljedeći kod:
+
+//ispisiPoruke(el, i) poziva funkciju "ispisiPoruke" s elementom "el" (trenutna poruka) i indeksom "i". Funkcija "ispisiPoruke" vraća HTML element koji prikazuje poruku.
 
 export default Messages;

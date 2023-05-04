@@ -2,9 +2,12 @@ import React, { useState } from "react";
 
 function Input(props){
     const { onPoruka } = props;
+    //  Destrukcija "onPoruka" iz "props" kako bismo ga koristili unutar komponente.
 
-    /* definiramo stanje unutar komponente kako bi mogli spremiti vrjednost koju korisnik upise u polje za unos */
+    // Deklariramo stanje "text" i funkciju za ažuriranje stanja "setText" s početnom vrijednošću praznog stringa.
     const [text, setText] = useState("");
+
+    // Deklariramo stanje "isButtonDisabled" i funkciju za ažuriranje stanja "setIsButtonDisabled" s početnom vrijednošću "true".
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     
     /* mjenjamo stanje u vrijednost koju korisnik unese */
@@ -12,7 +15,7 @@ function Input(props){
         const value = e.target.value;
         setText(e.target.value);
 
-        // Provjeravamo da li je unesen tekst u polje input, ako nije setIsButtonDisabled(false), tj. tipka ostane u disable modu
+        // Provjeravamo da li je unesen tekst u polje input, ako nije setIsButtonDisabled(false), tj. ovo će omogućiti ili onemogućiti gumb za slanje poruke.
         if (value.length > 0) {
             setIsButtonDisabled(false);
           } else {
@@ -20,15 +23,12 @@ function Input(props){
           }
     }
 
-    /* sa ovom funkcijom prekidamo uobičajnu radnju form elementa tako sto ne saljemo podatke */
-    /* praznimo stanje komponente za buduce unose */
-    /* stavljamo funckiju uz propsa unutar ove funkcije da bi poslali poruku u stanje komponente */
-    /* setIsButtonDisabled dodijeljujemo true */
+    /* Ova funkcija se poziva kada se forma "submita" (pošalje) */
     const onFormSubmit = (e) => {
-        e.preventDefault();
-        setText("");
-        setIsButtonDisabled(true);
-        onPoruka(text);
+        e.preventDefault(); // Poništavamo uobičajeno ponašanje forme kako ne bismo slali podatke.
+        setText(""); // Postavljamo stanje "text" na prazan string za buduće unose.
+        setIsButtonDisabled(true); // Postavljamo "isButtonDisabled" na "true" kako bi gumb bio onemogućen nakon slanja poruke.
+        onPoruka(text); //  Pozivamo funkciju "onPoruka" s trenutnim tekstom kako bismo poslali poruku u stanje komponente.
     }
     
     /* stavljamo u form element da bi korisnik mogao pritiskom na tipku enter poslati poruku */

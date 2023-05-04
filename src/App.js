@@ -1,6 +1,7 @@
 import './App.css';
 import React from "react";
 import { Messages, Input, Footer, Header } from "./components";
+// Uvozimo komponente Messages, Input, Footer i Header iz mape "components".
 
 /* funkcija pomocu kojih generiramo nasumicno ime i za to koristimo npm paket sillyname */
 function randomName(){
@@ -16,8 +17,9 @@ function randomColor(){
   return color;
 }
 
+// Kreiramo klasu App koja nasljeđuje React.Component.
 class App extends React.Component {
-  /* state u koji spremamo poruke i podatke o korisniku */
+  // Definiramo početno stanje komponente s dva atributa: "poruke" (prazan niz) i "korisnik" (objekt s nasumičnim imenom i bojom).
   state = {
     poruke: [],
     korisnik : {
@@ -34,9 +36,11 @@ class App extends React.Component {
   /* member ubacujemo u stanje odma kada se korisnik spoji da bi lakse dosli do podataka o korisniku */
   constructor() {
     super();
+    // Inicijalizacija drone objekta s "window.Scaledrone" za komunikaciju s Scaledrone servisom
     this.drone = new window.Scaledrone("TTAB80ZRqzFy41Il", {
       data: this.state.korisnik
     });
+    // "open" događaj provjerava postoji li pogreška u vezi s konekcijom i ažurira "korisnik" objekt s "id" atributom (clientId) koji dolazi iz Scaledrone-a.
     this.drone.on("open", error => {
       if(error)
       {
@@ -46,14 +50,15 @@ class App extends React.Component {
       member.id = this.drone.clientId;
       this.setState({korisnik: member})
     });
-   /* da bi mogli korstiti chat funkciju Scaledrone-a moramo se spojiti na sobu u kojoj ce se poruke emitirati */
-   /* drone.subscribe omogucava instanciranje sobe - soba mora imati prefiks observable da bi mogla sadrzavati informacije o pošiljatelju */
+   // "room" objekt omogućava spajanje na sobu za komunikaciju s drugim korisnicima.
+   // drone.subscribe omogucava instanciranje sobe - soba mora imati prefiks observable da bi mogla sadrzavati informacije o pošiljatelju
     const room = this.drone.subscribe("observable-chatroom");
     /* koristimo message event za emitiranje poruke u sobi */
     /* message event je objekt koji u sebi ima podatke data(poruka koja je poslana), id(unikatan index poruke), timestamp, clientId(id clienta koji je posalo poruku) i member(objekt - podaci o korisniku koji je poslao poruku) */
     /* u ovom slucaju trebaju nam data i member */
     /* data i member koje dobijemo iz eventa ubacujemo u stanje komponente */
     /* message event prima podatke od drone.publisha */
+    // "message" događaj prima podatke o porukama i korisnicima te ih dodaje u stanje komponente.
     room.on("message", message => {
       const { data, member } = message;
       const poruke = this.state.poruke;
@@ -71,6 +76,7 @@ class App extends React.Component {
     })
   }
 
+  // Render metoda koja vraća JSX kod s uključenim komponentama Header, Messages, Input i Footer te proslijeđuje potrebne podatke.
   render(){
   return (
     <div className="App">
