@@ -36,8 +36,7 @@ class App extends React.Component {
   /* member ubacujemo u stanje odma kada se korisnik spoji da bi lakse dosli do podataka o korisniku */
   constructor() {
     super();
-    // Inicijalizacija drone objekta s "window.Scaledrone" za komunikaciju s Scaledrone servisom
-    this.drone = new window.Scaledrone("TTAB80ZRqzFy41Il", {
+    this.drone = new window.Scaledrone("CMacwJ3ss7YIs0hJ", {
       data: this.state.korisnik
     });
     // "open" događaj provjerava postoji li pogreška u vezi s konekcijom i ažurira "korisnik" objekt s "id" atributom (clientId) koji dolazi iz Scaledrone-a.
